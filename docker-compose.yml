@@ -6,7 +6,7 @@ services:
     build:
       context: ./jenkins-master
       dockerfile: Dockerfile
-    image: jenkins-master:latest
+    image: airdata/jenkins-master:latest
     restart: always
     ports:
       - "80:8080"
@@ -33,7 +33,7 @@ services:
     build:
       context: ./jenkins-slave-dind
       dockerfile: Dockerfile
-    image: jenkins-slave-dind:latest
+    image: airdata/jenkins-slave-dind:latest
     restart: always
     volumes:
       - "/var/jenkins/worker:/var/jenkins/worker"
