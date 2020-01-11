@@ -1,6 +1,6 @@
 version: 2.1 # use CircleCI 2.1
 jobs:
-  build_mainapp:
+  build_jenkins:
     docker:
       - image: circleci/php:7.1-node-browsers
     working_directory: ~/jenkins-in-docker
@@ -15,4 +15,4 @@ workflows:
   version: 2
   default:
     jobs:
-      - build_mainapp
+      - build_jenkins
