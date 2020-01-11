@@ -1,6 +1,36 @@
-linux_docker_builder:
-  env:
-    DOCKERHUB_USER: ENCRYPTED[d141f69cf141cb769cc02c110baa2cfb6e316535dfa7d24f0a93ae00629c386e7f77286660adec8887823aa409447cd1]
-    DOCKERHUB_PASS: ENCRYPTED[983a4ca342215a298198297c542adfec147321c65142cd03a8eaf1f71f530a8d133be2dfa67eb0d4f81337b968340e7d]
-  script: |
-    docker login --username=$DOCKERHUB_USER --password=$DOCKERHUB_PASS
+version: 2.1 # use CircleCI 2.1
+jobs:
+  linux_docker_builder:
+    env:
+      DOCKERHUB_USER: ENCRYPTED[d141f69cf141cb769cc02c110baa2cfb6e316535dfa7d24f0a93ae00629c386e7f77286660adec8887823aa409447cd1]
+      DOCKERHUB_PASS: ENCRYPTED[983a4ca342215a298198297c542adfec147321c65142cd03a8eaf1f71f530a8d133be2dfa67eb0d4f81337b968340e7d]
+    script: |
+      docker login --username=$DOCKERHUB_USER --password=$DOCKERHUB_PASS
+      
+  build_jenkins:
+    docker:
+      - image: circleci/php:7.1-node-browsers
+    working_directory: ~/jenkins-in-docker
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/jenkins-in-docker
+      - setup_remote_docker
+      - run: 
+          name: Load archived Docker image
+          command: |
+            docker-compose -f docker-compose.yml build
+      - run:
+          name: Publish Docker Image to Docker Hub
+          command: |
+            echo "$DOCKHUB_PASS"
+            docker login -u "$DOCKERHUB_USER" -p "$DOCKHUB_PASS" --password-stdin
+            docker push airdata/jenkins-slave-docker:latest
+            docker push airdata/jenkins-master:latest
+
+workflows:
+  version: 2
+  default:
+    jobs:
+      - build_jenkins
+      - linux_docker_builder
