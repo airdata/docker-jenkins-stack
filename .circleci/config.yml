@@ -1,0 +1,18 @@
+version: 2.1 # use CircleCI 2.1
+jobs:
+  build_mainapp:
+    docker:
+      - image: circleci/php:7.2-apache
+    working_directory: ~/jenkins-in-docker
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/jenkins-in-docker
+      - setup_remote_docker
+      - run: docker-compose -f docker-compose.yml build
+
+workflows:
+  version: 2
+  build_docker_images:
+    jobs:
+      - build_mainapp
