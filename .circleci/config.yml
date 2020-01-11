@@ -4,12 +4,13 @@ jobs:
     docker:
       - image: circleci/php:7.1-node-browsers
     working_directory: ~/jenkins-in-docker
+
     steps:
       - checkout
       - attach_workspace:
           at: ~/jenkins-in-docker
       - setup_remote_docker
-      - run: 
+      - run:
           name: Load archived Docker image
           command: |
             docker-compose -f docker-compose.yml build
@@ -17,8 +18,7 @@ jobs:
           name: Publish Docker Image to Docker Hub
           command: |
             docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASS"
-            docker push airdata/jenkins-slave-docker:latest
-
+            docker-compose -f docker-compose.yml push
 workflows:
   version: 2
   default:

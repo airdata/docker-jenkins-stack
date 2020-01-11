@@ -6,7 +6,7 @@ services:
     build:
       context: ./jenkins-master
       dockerfile: Dockerfile
-    image: airdata/jenkins-master:latest
+    image: airdata/jenkins-master-docker:latest
     restart: always
     ports:
       - "80:8080"
