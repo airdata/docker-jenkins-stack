@@ -12,12 +12,12 @@ jobs:
       - run: 
           name: Load archived Docker image
           command: |
-            docker login -u "$DOCKERHUB_USER" -p "$DOCKHUB_PASS"
+            docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASS"
             docker-compose -f docker-compose.yml build
       - deploy:
           name: Publish Docker Image to Docker Hub
           command: |
-            docker login -u "$DOCKERHUB_USER" -p "$DOCKHUB_PASS"
+            docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASS"
             docker push airdata/jenkins-slave-docker:latest
 
 workflows:
