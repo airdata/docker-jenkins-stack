@@ -8,9 +8,9 @@ RUN apt-get update \
   && apt-get install -y jq mariadb-client \
   && apt-get autoremove -y \
   && wget https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz \
-  && tar -xf OpenJDK8U-jre_x64_linux_hotspot_8u232b09.tar.gz \
-  && rm -rf  OpenJDK8U-jre_x64_linux_hotspot_8u232b09.tar.gz \
-  && mv jdk8u232-b09 /opt/jdk1.8.0_201 \
+  && tar -xf OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz \
+  && rm -rf OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz \
+  && mv openjdk-8u232-b09 /opt/jdk1.8.0_201 \
   && ls -la /opt/**/* \
   && mkdir -p \
       /var/jenkins/cache \
