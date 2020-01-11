@@ -1,9 +1,11 @@
-version: 2.1 # use CircleCI 2.1
+version: 2.1
+defaults: &defaults
+  working_directory: ~/jenkins-in-docker
+  machine: true
+
 jobs:
   build_jenkins:
-    docker:
-      - image: circleci/php:7.1-node-browsers
-    working_directory: ~/jenkins-in-docker
+    <<: *defaults
     steps:
       - checkout
       - attach_workspace:
