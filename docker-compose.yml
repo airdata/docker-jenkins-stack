@@ -29,11 +29,11 @@ services:
     networks:
       - jenkins-cluster
 
-  jenkins-slave-dind:
+  jenkins-slave-docker:
     build:
       context: ./jenkins-slave-dind
       dockerfile: Dockerfile
-    image: airdata/jenkins-slave-dind:latest
+    image: airdata/jenkins-slave-docker:latest
     restart: always
     volumes:
       - "/var/jenkins/worker:/var/jenkins/worker"
