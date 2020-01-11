@@ -1,19 +1,15 @@
-version: 2.1
-defaults: &defaults
-  working_directory: ~/jenkins-in-docker
-  machine: true
-
+version: 2.1 # use CircleCI 2.1
 jobs:
   build_jenkins:
-    <<: *defaults
     docker:
       - image: circleci/php:7.1-node-browsers
+    working_directory: ~/jenkins-in-docker
     steps:
       - checkout
       - attach_workspace:
           at: ~/jenkins-in-docker
       - setup_remote_docker
-      - run:
+      - run: 
           name: Load archived Docker image
           command: |
             docker login -u "$DOCKERHUB_USER" -p "$DOCKHUB_PASS"
