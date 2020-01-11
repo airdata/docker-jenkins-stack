@@ -9,9 +9,10 @@ jobs:
       - attach_workspace:
           at: ~/jenkins-in-docker
       - setup_remote_docker
-      - run: docker-compose -f docker-compose.yml build
-    steps:
-      - setup_remote_docker
+      - run: 
+          name: Load archived Docker image
+          command: |
+            docker-compose -f docker-compose.yml build
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
