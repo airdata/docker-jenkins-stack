@@ -13,6 +13,6 @@ jobs:
 
 workflows:
   version: 2
-  build_docker_images:
+  default:
     jobs:
       - build_mainapp
