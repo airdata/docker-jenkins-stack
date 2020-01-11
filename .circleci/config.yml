@@ -16,8 +16,9 @@ jobs:
       - run:
           name: Publish Docker Image to Docker Hub
           command: |
-            echo "$DOCKHUB_PASS" | docker login -u "$DOCKERHUB_USER" --password-stdin
-            docker push airdata/jenkins-slave-dind:latest
+            echo "$DOCKHUB_PASS"
+            docker login -u "$DOCKERHUB_USER" -p "$DOCKHUB_PASS" --password-stdin
+            docker push airdata/jenkins-slave-docker:latest
             docker push airdata/jenkins-master:latest
 
 workflows:
