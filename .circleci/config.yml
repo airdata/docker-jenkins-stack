@@ -1,6 +1,5 @@
 version: 2.1 # use CircleCI 2.1
 jobs:
-
   build_jenkins:
     docker:
       - image: circleci/php:7.1-node-browsers
@@ -10,7 +9,7 @@ jobs:
       - attach_workspace:
           at: ~/jenkins-in-docker
       - setup_remote_docker
-      - run:
+      - run: 
           name: Load archived Docker image
           command: |
             docker-compose -f docker-compose.yml build
@@ -27,4 +26,3 @@ workflows:
   default:
     jobs:
       - build_jenkins
-      - linux_docker_builder
