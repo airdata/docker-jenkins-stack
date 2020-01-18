@@ -27,7 +27,7 @@ ENV HOME=/var/jenkins/worker
 ENV NPM_CONFIG_PREFIX=/var/jenkins/worker/.npm-global
 ENV PATH=$NODE_HOME/bin:$ANT_HOME/bin:$M2_HOME/bin:$NPM_CONFIG_PREFIX/bin:$PATH
 COPY ./setup/entrypoint.sh /usr/local/bin/
-COPY --form=slave_content /opt/ /opt/
+COPY --from=slave_content /opt/ /opt/
 RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash \
   && yum -y update && yum -y install epel-release \
   && yum -y install git-lfs \
@@ -69,6 +69,7 @@ RUN sudo pip install ansible-cmdb \
   && sudo chown -R jenkins /usr/local/node-v8.11.3-linux-x64 \
   && sudo chmod 0775 /usr/local/VeracodeJavaAPI.jar \
   && sudo chown -R jenkins:jenkins /var/jenkins/worker \
+  && rm -rf /tmp/* \
   && npm install -g sonarqube-scanner
 VOLUME /var/jenkins/worker
 ENTRYPOINT ["entrypoint.sh"]
