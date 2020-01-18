@@ -3,7 +3,6 @@ WORKDIR /tmp
 ADD http://apache.cbox.biz//ant/binaries/apache-ant-1.10.6-bin.tar.gz apache-ant.tar.gz
 ADD http://apache.cbox.biz/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz maven.tar.gz
 ADD https://nodejs.org/dist/v8.11.3/node-v8.11.3-linux-x64.tar.xz nodejs.tar.xz
-ADD https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u232b09.tar.gz /tmp/OpenJDK8U-jdk_x64_linux_hotspot_8u232b09.tar.gz
 RUN apk add --update tar curl tar unzip wget
 
 RUN curl -LJO  https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u232b09.tar.gz
