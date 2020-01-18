@@ -44,6 +44,7 @@ RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.r
     strace pango libXcomposite libXcursor libXdamage libXext libXi \
     libXtst cups-libs libXScrnSaver libXrandr GConf2 alsa-lib atk gtk3 cairo jq \
     ipa-gothic-fonts xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillic xorg-x11-fonts-Type1 xorg-x11-fonts-misc \
+    python-pip \
   && yum clean all
 RUN mkdir -p /var/jenkins/worker \
   && git-lfs install \
@@ -55,8 +56,7 @@ RUN mkdir -p /var/jenkins/worker \
   && chmod a+x /usr/local/bin/entrypoint.sh \
   && sed -i 's/\r//' /usr/local/bin/entrypoint.sh
 USER jenkins
-RUN sudo yum update -y && sudo yum -y install python-pip \
-  && sudo pip install ansible-cmdb \
+RUN sudo pip install ansible-cmdb \
   && sudo update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_201/bin/java 100 \
   && sudo update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_201/bin/javac 100 \
   && sudo mv /opt/node-v8.11.3-linux-x64 /usr/local \
