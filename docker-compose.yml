@@ -21,13 +21,11 @@ services:
         -Dhudson.security.HudsonPrivateSecurityRealm.ID_REGEX="^[a-zA-Z0-9_.-]+$$"
         -Xmx2048m
     volumes:
-      - "./jenkins:/var/jenkins_home"
-      - "./jenkins/cache:/var/jenkins/cache"
-      - "./jenkins/log:/var/log/jenkins"
+      - "./jenkins/jenkins_home:/var/jenkins_home"
+      - "./jenkins/jenkins_cache:/var/jenkins/cache"
+      - "./jenkins/jenkins_log:/var/log/jenkins"
       - "/var/run/docker.sock:/var/run/docker.sock:rw"
     privileged: true
-    networks:
-      - jenkins-cluster
 
   jenkins-slave-docker:
     build:
@@ -36,7 +34,7 @@ services:
     image: airdata/jenkins-slave-docker:latest
     restart: always
     volumes:
-      - "/var/jenkins/worker:/var/jenkins/worker"
+      - "./jenkins/jenkins_worker:/var/jenkins/worker"
       - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
       - jenkins-cluster
