@@ -5,7 +5,7 @@ ADD http://apache.cbox.biz/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.t
 ADD https://nodejs.org/dist/v8.11.3/node-v8.11.3-linux-x64.tar.xz nodejs.tar.xz
 RUN apk add --update tar curl tar unzip wget
 
-RUN curl -LJO  https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u232b09.tar.gz
+RUN curl -LJO  https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u232b09.tar.gz \
   && find . -iname "*.tar.*" -exec tar -xf {} \; \
   && ls -la \
   && mv apache-ant-1.10.6 /opt/ant \
