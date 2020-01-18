@@ -7,12 +7,6 @@ services:
       context: ./jenkins-master
       dockerfile: Dockerfile
     image: airdata/jenkins-master-docker:latest
-    restart: always
-    ports:
-      - "80:8080"
-      - "50000:50000"
-      - "4444:4444"
-      - "5555:5555"
     environment:
       JAVA_OPTS: |+
         -Djenkins.install.runSetupWizard=false
@@ -20,48 +14,15 @@ services:
         -Dhudson.model.DirectoryBrowserSupport.CSP="default-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self' 'unsafe-inline' data:;"
         -Dhudson.security.HudsonPrivateSecurityRealm.ID_REGEX="^[a-zA-Z0-9_.-]+$$"
         -Xmx2048m
-    volumes:
-      - "./jenkins/jenkins_home:/var/jenkins_home"
-      - "./jenkins/jenkins_cache:/var/jenkins/cache"
-      - "./jenkins/jenkins_log:/var/log/jenkins"
-      - "/var/run/docker.sock:/var/run/docker.sock:rw"
-    privileged: true
-    networks:
-      - jenkins-cluster
-
 
   jenkins-slave:
     build:
       context: ./jenkins-slave
       dockerfile: Dockerfile
     image: airdata/jenkins-slave:latest
-    volumes:
-      - "./jenkins/jenkins_worker:/var/jenkins/worker"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    privileged: true
-    networks:
-      - jenkins-cluster
-    links:
-      - jenkins-master
-    restart: always
-
 
   jenkins-slave-docker:
     build:
       context: ./jenkins-slave-dind
       dockerfile: Dockerfile
     image: airdata/jenkins-slave-dind:latest
-    volumes:
-      - "./jenkins/jenkins_worker:/var/jenkins/worker"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    privileged: true
-    networks:
-      - jenkins-cluster
-
-networks:
-  jenkins-cluster:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 172.10.10.0/24

@@ -25,29 +25,19 @@ services:
     privileged: true
     networks:
       - jenkins-cluster
-
+    command: >
+      sh -c "sudo chmod 666 /var/run/docker.sock"
 
   jenkins-slave:
     image: airdata/jenkins-slave:latest
     volumes:
       - "./jenkins/jenkins_worker:/var/jenkins/worker"
-      - "/var/run/docker.sock:/var/run/docker.sock"
     privileged: true
     networks:
       - jenkins-cluster
     links:
       - jenkins-master
     restart: always
-
-
-  jenkins-slave-docker:
-    image: airdata/jenkins-slave-dind:latest
-    volumes:
-      - "./jenkins/jenkins_worker:/var/jenkins/worker"
-      - "/var/run/docker.sock:/var/run/docker.sock"
-    privileged: true
-    networks:
-      - jenkins-cluster
 
 networks:
   jenkins-cluster:

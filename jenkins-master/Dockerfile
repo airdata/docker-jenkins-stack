@@ -5,7 +5,7 @@ ADD ./setup /usr/share/jenkins/ref/
 USER root
 
 RUN apt-get update \
-  && apt-get install -y jq mariadb-client \
+  && apt-get install -y jq mariadb-client sudo \
   && apt-get autoremove -y \
   && wget https://github.com/AdoptOpenJDK/openjdk8-upstream-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz \
   && tar -xf OpenJDK8U-jdk_x64_linux_8u232b09.tar.gz \
@@ -21,6 +21,7 @@ RUN apt-get update \
       /var/jenkins_home \
       /var/log/jenkins \
       /usr/share/jenkins/ref \
+  && echo "jenkins    ALL=(ALL)   NOPASSWD:ALL" >> /etc/sudoers \
   && update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_201/bin/java 100 \
   && update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_201/bin/javac 100
 
