@@ -3,6 +3,9 @@ version: '3.2'
 services:
 
   jenkins-master:
+    build:
+      context: ./jenkins-master
+      dockerfile: Dockerfile
     image: airdata/jenkins-master-docker:latest
     restart: always
     ports:
@@ -28,6 +31,9 @@ services:
 
 
   jenkins-slave:
+    build:
+      context: ./jenkins-slave
+      dockerfile: Dockerfile
     image: airdata/jenkins-slave:latest
     volumes:
       - "./jenkins/jenkins_worker:/var/jenkins/worker"
@@ -41,6 +47,9 @@ services:
 
 
   jenkins-slave-docker:
+    build:
+      context: ./jenkins-slave-dind
+      dockerfile: Dockerfile
     image: airdata/jenkins-slave-dind:latest
     volumes:
       - "./jenkins/jenkins_worker:/var/jenkins/worker"

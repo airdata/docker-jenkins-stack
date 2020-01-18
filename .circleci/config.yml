@@ -11,12 +11,12 @@ jobs:
       - run:
           name: Load archived Docker image
           command: |
-            docker-compose -f docker-compose.yml build
+            docker-compose -f docker-compose-build.yml build
       - deploy:
           name: Publish Docker Image to Docker Hub
           command: |
             docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASS"
-            docker-compose -f docker-compose.yml push
+            docker-compose -f docker-compose-build.yml push
 workflows:
   version: 2
   default:
