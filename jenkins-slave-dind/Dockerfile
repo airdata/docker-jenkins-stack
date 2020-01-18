@@ -54,10 +54,6 @@ RUN mkdir -p /var/jenkins/worker \
   && chown -R jenkins:jenkins /var/jenkins/worker \
   && chmod a+x /usr/local/bin/entrypoint.sh \
   && sed -i 's/\r//' /usr/local/bin/entrypoint.sh
-
-
-FROM base_install as slave
-COPY --from=slave_content /opt /opt
 USER jenkins
 RUN sudo yum update -y && sudo yum -y install python-pip \
   && sudo pip install ansible-cmdb \
