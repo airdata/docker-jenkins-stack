@@ -12,6 +12,7 @@ if [ ! -f $KEYFILE ]; then
   $KEYGEN -q -t rsa -N "" -f $KEYFILE
   cat $KEYFILE.pub >> ~/.ssh/authorized_keys
 fi
-curl -fsS --retry 100 --retry-delay 5 http://jenkins-master:8080/jnlpJars/agent.jar
-java -jar agent.jar -jnlpUrl  http://jenkins-master:8080/computer/slave/slave-agent.jnlp -workDir "/var/jenkins/worker"
+wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 0 http://jenkins-master:8080/jnlpJars/agent.jar -O /tmp/agent.jar
+sudo chmod 666 /tmp/agent.jar
+java -jar /tmp/agent.jar -jnlpUrl  http://jenkins-master:8080/computer/slave/slave-agent.jnlp -workDir "/var/jenkins/worker"
 exec "$@"

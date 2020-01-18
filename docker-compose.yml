@@ -43,6 +43,7 @@ services:
       - jenkins-cluster
     links:
       - jenkins-master
+    restart: always
 
 
   jenkins-slave-docker:
