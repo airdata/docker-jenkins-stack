@@ -29,25 +29,27 @@ services:
     networks:
       - jenkins-cluster
 
+
   jenkins-slave:
     build:
       context: ./jenkins-slave
       dockerfile: Dockerfile
     image: airdata/jenkins-slave:latest
-    restart: always
     volumes:
       - "./jenkins/jenkins_worker:/var/jenkins/worker"
       - "/var/run/docker.sock:/var/run/docker.sock"
     privileged: true
     networks:
       - jenkins-cluster
+    links:
+      - jenkins-master
+
 
   jenkins-slave-docker:
     build:
       context: ./jenkins-slave-dind
       dockerfile: Dockerfile
     image: airdata/jenkins-slave-dind:latest
-    restart: always
     volumes:
       - "./jenkins/jenkins_worker:/var/jenkins/worker"
       - "/var/run/docker.sock:/var/run/docker.sock"
