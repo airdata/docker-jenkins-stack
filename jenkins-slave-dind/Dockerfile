@@ -10,19 +10,17 @@ RUN curl -LJO https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/downloa
   && mv apache-ant-1.10.6 /opt/ant \
   && mv jdk8u232-b09 /opt/jdk1.8.0_201 \
   && mv apache-maven-3.5.4 /opt/maven \
-  && mv node-v8.11.3-linux-x64 /opt/ \
-  && rm -rf /tmp/*
+  && mv node-v8.11.3-linux-x64 /opt/ 
 
 FROM base_content as slave_content
-ADD https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip /tmp/terraform_0.11.13_linux_amd64.zip
-ADD http://cdn.sencha.com/cmd/4.0.1.45/SenchaCmd-4.0.1.45-linux-x64.run.zip /tmp/senchacmd.zip
-ADD https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/19.11.6.0/vosp-api-wrappers-java-19.11.6.0.jar /opt/VeracodeJavaAPI.jar
 RUN wget --no-check-certificate https://sourceforge.net/projects/ant-contrib/files/ant-contrib/1.0b3/ant-contrib-1.0b3-bin.tar.gz -O /tmp/ant-contrib.tar.gz \
+  && wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip -O /tmp/terraform_0.11.13_linux_amd64.zip \
+  && wget http://cdn.sencha.com/cmd/4.0.1.45/SenchaCmd-4.0.1.45-linux-x64.run.zip -O /tmp/senchacmd.zip \
+  && wget https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/19.11.6.0/vosp-api-wrappers-java-19.11.6.0.jar -O /opt/VeracodeJavaAPI.jar \
   && tar -xf /tmp/ant-contrib.tar.gz -C /tmp \
   && mv /tmp/ant-contrib/ant-contrib-1.0b3.jar /opt/ant/lib/ \
   && unzip /tmp/senchacmd.zip -d /opt \
-  && unzip /tmp/terraform_0.11.13_linux_amd64.zip -d /opt \
-  && rm -rf /tmp/*
+  && unzip /tmp/terraform_0.11.13_linux_amd64.zip -d /opt 
 
 FROM centos:7 as base_install
 USER root
