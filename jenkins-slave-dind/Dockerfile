@@ -14,7 +14,6 @@ RUN curl -LJO https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/downloa
   && mv jdk8u232-b09 /opt/jdk1.8.0_201 \
   && mv apache-maven-3.5.4 /opt/maven \
   && mv node-v8.11.3-linux-x64 /opt/ \
-  && tar -xf /tmp/ant-contrib.tar.gz -C /tmp \
   && mv /tmp/ant-contrib/ant-contrib-1.0b3.jar /opt/ant/lib/ \
   && unzip /tmp/senchacmd.zip -d /opt \
   && unzip /tmp/terraform_0.11.13_linux_amd64.zip -d /opt
