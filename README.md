@@ -1,12 +1,6 @@
-- [Resole in Docker](#resole-in-docker)
-  - [Prerequisites](#prerequisites)
-  - [Build](#build)
-# Resole in Docker
-## Prerequisites
-1. [Install docker]
-2. [Install docker-compose]
+# jenkins-in-docker
 
-## Build
+[![CircleCI](https://img.shields.io/circleci/project/github/airdata/jenkins-in-docker.svg)](https://circleci.com/gh/airdata/jenkins-in-docker)
 
-[install docker-compose]: https://docs.docker.com/compose/install/
-[install docker]: https://docs.docker.com/v17.09/engine/installation/
+* Here is [Jenkoins Master on DockerHub ](https://hub.docker.com/r/airdata/jenkins-master-docker)
+* And this is [Jenkoins Slave on DockerHub ](https://hub.docker.com/r/airdata/jenkins-slave-docker)
