@@ -1,4 +1,4 @@
-FROM jenkins/jenkins:2.198 as master
+FROM jenkins/jenkins:2.222.3 as master
 
 ADD ./setup /usr/share/jenkins/ref/
 
