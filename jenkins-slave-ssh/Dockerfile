@@ -27,10 +27,8 @@ ENV NPM_CONFIG_PREFIX=/var/jenkins/worker/.npm-global
 ENV PATH=$NODE_HOME/bin:$ANT_HOME/bin:$M2_HOME/bin:$NPM_CONFIG_PREFIX/bin:$PATH
 ADD ./setup/sshd_config /etc/ssh/sshd_config
 COPY --from=slave_content /opt/ /opt/
-RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh | bash \
-  && yum -y update && yum -y install epel-release \
-  && yum -y install git-lfs \
-    bzip2 \
+RUN yum -y update && yum -y install epel-release \
+  && yum -y install bzip2 \
     git \
     openssh \
     openssh-clients \
@@ -47,7 +45,6 @@ RUN curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.r
     python-pip \
   && yum clean all
 RUN mkdir -p /var/jenkins/worker \
-  && git-lfs install \
   && chown 1000:1000 /var/jenkins/worker \
   && groupadd -g 1000 jenkins \
   && useradd -d "/var/jenkins/worker" -u 1000 -g 1000 -m -s /bin/bash jenkins \
