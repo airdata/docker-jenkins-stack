@@ -8,7 +8,6 @@ RUN curl -LJO https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/downloa
   && wget --no-check-certificate https://sourceforge.net/projects/ant-contrib/files/ant-contrib/1.0b3/ant-contrib-1.0b3-bin.tar.gz \
   && wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip \
   && wget http://cdn.sencha.com/cmd/4.0.1.45/SenchaCmd-4.0.1.45-linux-x64.run.zip -O /tmp/senchacmd.zip \
-  && wget https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/19.11.6.0/vosp-api-wrappers-java-19.11.6.0.jar -O /opt/VeracodeJavaAPI.jar \
   && find . -iname "*.tar.*" -exec tar -xf {} \; \
   && mv apache-ant-1.10.8 /opt/ant \
   && mv jdk8u232-b09 /opt/jdk1.8.0_201 \
@@ -62,12 +61,10 @@ RUN sudo pip install ansible-cmdb \
   && sudo update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_201/bin/javac 100 \
   && sudo mv /opt/node-v8.11.3-linux-x64 /usr/local \
   && sudo mv /opt/terraform /bin \
-  && sudo mv /opt/VeracodeJavaAPI.jar /usr/local/VeracodeJavaAPI.jar \
   && sudo chmod a+x /opt/SenchaCmd-4.0.1.45-linux-x64.run \
   && sudo /opt/SenchaCmd-4.0.1.45-linux-x64.run --mode unattended --prefix /opt \
   && sudo chmod a+x /opt/Sencha/Cmd/4.0.1.45/sencha \
   && sudo chown -R jenkins /usr/local/node-v8.11.3-linux-x64 \
-  && sudo chmod 0775 /usr/local/VeracodeJavaAPI.jar \
   && sudo chown -R jenkins:jenkins /var/jenkins/worker \
   && sudo rm -rf /tmp/* \
   && npm install -g sonarqube-scanner
