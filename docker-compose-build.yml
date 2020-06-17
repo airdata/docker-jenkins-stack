@@ -26,3 +26,9 @@ services:
       context: ./jenkins-slave-dind
       dockerfile: Dockerfile
     image: airdata/jenkins-slave-dind:latest
+
+  jenkins-slave-ssh:
+    build:
+      context: ./jenkins-slave-ssh
+      dockerfile: Dockerfile
+    image: airdata/jenkins-slave-ssh:latest
