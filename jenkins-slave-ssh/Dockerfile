@@ -9,7 +9,7 @@ RUN curl -LJO https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/downloa
   && wget https://releases.hashicorp.com/terraform/0.11.13/terraform_0.11.13_linux_amd64.zip \
   && wget http://cdn.sencha.com/cmd/4.0.1.45/SenchaCmd-4.0.1.45-linux-x64.run.zip -O /tmp/senchacmd.zip \
   && find . -iname "*.tar.*" -exec tar -xf {} \; \
-  && mv apache-ant-1.10.6 /opt/ant \
+  && mv apache-ant-1.10.8 /opt/ant \
   && mv jdk8u232-b09 /opt/jdk1.8.0_201 \
   && mv apache-maven-3.5.4 /opt/maven \
   && mv node-v8.11.3-linux-x64 /opt/ \
