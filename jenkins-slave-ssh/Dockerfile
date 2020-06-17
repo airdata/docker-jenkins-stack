@@ -2,7 +2,7 @@ FROM alpine as slave_content
 WORKDIR /tmp
 RUN apk add --update tar curl tar unzip wget
 RUN curl -LJO https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/download/jdk8u232-b09/OpenJDK8U-jdk_x64_linux_hotspot_8u232b09.tar.gz \
-  && curl -LJO http://apache.cbox.biz//ant/binaries/apache-ant-1.10.6-bin.tar.gz  \
+  && curl -LJO http://apache.cbox.biz//ant/binaries/apache-ant-1.10.8-bin.tar.gz  \
   && curl -LJO http://apache.cbox.biz/maven/maven-3/3.5.4/binaries/apache-maven-3.5.4-bin.tar.gz \
   && curl -LJO https://nodejs.org/dist/v8.11.3/node-v8.11.3-linux-x64.tar.xz \
   && wget --no-check-certificate https://sourceforge.net/projects/ant-contrib/files/ant-contrib/1.0b3/ant-contrib-1.0b3-bin.tar.gz \
@@ -10,7 +10,7 @@ RUN curl -LJO https://github.com/AdoptOpenJDK/openjdk8-binaries/releases/downloa
   && wget http://cdn.sencha.com/cmd/4.0.1.45/SenchaCmd-4.0.1.45-linux-x64.run.zip -O /tmp/senchacmd.zip \
   && wget https://repo1.maven.org/maven2/com/veracode/vosp/api/wrappers/vosp-api-wrappers-java/19.11.6.0/vosp-api-wrappers-java-19.11.6.0.jar -O /opt/VeracodeJavaAPI.jar \
   && find . -iname "*.tar.*" -exec tar -xf {} \; \
-  && mv apache-ant-1.10.6 /opt/ant \
+  && mv apache-ant-1.10.8 /opt/ant \
   && mv jdk8u232-b09 /opt/jdk1.8.0_201 \
   && mv apache-maven-3.5.4 /opt/maven \
   && mv node-v8.11.3-linux-x64 /opt/ \
