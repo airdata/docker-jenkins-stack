@@ -15,7 +15,7 @@ jobs:
       - deploy:
           name: Publish Docker Image to Docker Hub
           command: |
-            docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_PASS"
+            docker login -u "$REG_USERNAME" -p "$DOCKERHUB_TOKEN"
             docker-compose -f docker-compose-build.yml push
 workflows:
   version: 2
