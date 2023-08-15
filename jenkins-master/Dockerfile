@@ -4,8 +4,8 @@ ADD ./setup /usr/share/jenkins/ref/
 
 USER root
 
-RUN apt-get update \
-  && apt-get install -y jq mariadb-client sudo \
+RUN apt-get update -y \
+  && apt-get install -y jq sudo \
   && apt-get autoremove -y 
 
 USER jenkins
