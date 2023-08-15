@@ -21,9 +21,9 @@ RUN apt-get update \
       /var/jenkins_home \
       /var/log/jenkins \
       /usr/share/jenkins/ref \
-  && echo "jenkins    ALL=(ALL)   NOPASSWD:ALL" >> /etc/sudoers \
-  && update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_201/bin/java 100 \
-  && update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_201/bin/javac 100
+  && echo "jenkins    ALL=(ALL)   NOPASSWD:ALL" >> /etc/sudoers
+#  && update-alternatives --install /usr/bin/java java /opt/jdk1.8.0_201/bin/java 100 \
+#  && update-alternatives --install /usr/bin/javac javac /opt/jdk1.8.0_201/bin/javac 100
 
 USER jenkins
 ENV JAVA_OPTS="-Xmx2048m"
