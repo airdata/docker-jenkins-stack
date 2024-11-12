@@ -1,4 +1,4 @@
-FROM airdata/jenkins-master-docker:latest
+FROM airdata/jenkins-master-docker:1.1.1
 
 ADD ./setup /usr/share/jenkins/ref/
 
